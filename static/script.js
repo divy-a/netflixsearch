@@ -5,7 +5,7 @@ searchInput.addEventListener('input', () => {
     query = searchInput.value;
 
     if (query === '') {
-        spinner.style.visibility = 'hidden'
+        document.getElementById('spin').style.visibility = 'hidden'
         const resultsContainer = document.querySelector('.results');
         resultsContainer.innerHTML = '';
     }
@@ -20,8 +20,7 @@ searchInput.addEventListener('input', () => {
 function search(query, max_results) {
     if (query != undefined && max_results != undefined) {
 
-        spinner = document.getElementById('spin')
-        spinner.style.visibility = 'visible'
+        document.getElementById('spin').style.visibility = 'visible'
 
         fetch(`/search?q=${query}&max_results=${max_results}`)
             .then(response => response.json())
@@ -40,9 +39,8 @@ function search(query, max_results) {
                         });
                         resultsContainer.appendChild(resultDiv); 
                     });
-                    spinner.style.visibility = 'hidden'
+                    document.getElementById('spin').style.visibility = 'hidden'
                 }
-                spinner.style.visibility = 'hidden'
 
             }).catch(error => {
                 console.error(error)
