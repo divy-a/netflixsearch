@@ -7,7 +7,7 @@ from fuzzywuzzy import fuzz, process
 
 data = [] 
 allData = []
-with open('netflixsearch/data/netflix_titles.csv', mode='r', encoding='utf-8') as file:
+with open('data/netflix_titles.csv', mode='r', encoding='utf-8') as file:
     csvFile = csv.DictReader(file)
     for lines in csvFile:
         data.append(lines['title'])
