@@ -1,3 +1,5 @@
+//script
+
 const searchInput = document.getElementById('search-input');
 
 searchInput.addEventListener('input', () => {
