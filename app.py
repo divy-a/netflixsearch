@@ -2,9 +2,6 @@ from flask import Flask, request, jsonify, render_template
 from supersighter import searcher
 import time
 app = Flask(__name__)
-request_count = 0
-accepted_request_count = 0
-
 
 @app.route("/")
 def home():
@@ -12,26 +9,13 @@ def home():
 
 @app.route("/search")
 def search():
-    global request_count
-    request_count += 1
-    local_requestCount = request_count
     
-    time.sleep(0.400)
-    if(local_requestCount==request_count):
-        
-        global accepted_request_count
-        accepted_request_count += 1
-    
-        results = searcher.get_results(request.args.get(
-            'q'), request.args.get('max_results'))
-        response = jsonify({
-            'results': results
-        })
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        print('Acceptance Rate : ', ((accepted_request_count/request_count)*100))
-        return response
-    else:
-        return jsonify('waiting for latest request to reduce server load'), 200
+    results = searcher.get_results(request.args.get(
+        'q'), request.args.get('max_results'))
+    response = jsonify({
+        'results': results
+    })
+    return response
 
 @app.route("/getinfo")
 def getinfo_template():
