@@ -16,7 +16,7 @@ def search():
     request_count += 1
     local_requestCount = request_count
     
-    time.sleep(0.300)
+    time.sleep(0.400)
     if(local_requestCount==request_count):
         
         global accepted_request_count
