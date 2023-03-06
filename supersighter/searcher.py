@@ -37,7 +37,7 @@ def get_results(query, max_results):
             
     results = (starts_withs + contains)[0:int(max_results)]
 
-    if(len(results) <= 3):  # only does fuzzy search if there are only 3 results
+    if(len(results) <= -1):  # fuzzy search is disabled currently
         fuzzy_result = process.extract(
             query, data, scorer=fuzz.token_sort_ratio, limit=10)
         fuzzys = [{'id': r[1], 'data': r[0]} for r in fuzzy_result]
