@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 from supersighter import searcher
-import time
 app = Flask(__name__)
 
 @app.route("/")
@@ -11,7 +10,8 @@ def home():
 def search():
     
     results = searcher.get_results(request.args.get(
-        'q'), request.args.get('max_results'))
+        'q'), request.args.get('max_results'), request.args.get('adv'))
+    
     response = jsonify({
         'results': results
     })
@@ -27,9 +27,6 @@ def getinfo_template():
 def getinfo(id):
     return jsonify(searcher.allData[int(id)])
     
-    
-
-
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)

@@ -1,6 +1,6 @@
 //script
 
-const searchInput = document.getElementById('search-input');
+let searchInput = document.getElementById('search-input');
 
 searchInput.addEventListener('input', () => {
 
@@ -13,18 +13,18 @@ searchInput.addEventListener('input', () => {
     }
 
     else {
-        search(query, 10)
+        search(query, 10, 'false')
     }
 
 });
 
 
-function search(query, max_results) {
+function search(query, max_results, adv) {
     if (query != undefined && max_results != undefined) {
 
         document.getElementById('spin').style.visibility = 'visible'
 
-        fetch(`/search?q=${query}&max_results=${max_results}`)
+        fetch(`/search?q=${query}&max_results=${max_results}&adv=${adv}`)
             .then(response => response.json())
             .then(response => {
                 
@@ -41,6 +41,17 @@ function search(query, max_results) {
                         });
                         resultsContainer.appendChild(resultDiv); 
                     });
+                    const resultDiv = document.createElement('div');
+                    resultDiv.classList.add('adv');
+                    resultDiv.textContent = 'Do Advanced Search';
+                    searchInput.disabled = false;
+                    resultDiv.addEventListener('click', () => {
+                        searchInput.disabled = true;
+                        search(query, 10, 'true')
+                    });
+                    resultsContainer.appendChild(resultDiv); 
+
+
                     document.getElementById('spin').style.visibility = 'hidden'
                 }
 

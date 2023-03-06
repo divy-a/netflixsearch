@@ -7,7 +7,7 @@ from fuzzywuzzy import fuzz, process
 
 data = [] 
 allData = []
-with open('supersighter/netflix_titles.csv', mode='r', encoding='utf-8') as file:
+with open('netflixsearch/data/netflix_titles.csv', mode='r', encoding='utf-8') as file:
     csvFile = csv.DictReader(file)
     for lines in csvFile:
         data.append(lines['title'])
@@ -17,7 +17,7 @@ with open('supersighter/netflix_titles.csv', mode='r', encoding='utf-8') as file
 print('money'.startswith('Money Heist: From Tokyo to Berlin'.lower()))
 
 
-def get_results(query, max_results):
+def get_results(query, max_results, adv):
     starts_withs = []
     contains = []
     results = []
@@ -37,7 +37,10 @@ def get_results(query, max_results):
             
     results = (starts_withs + contains)[0:int(max_results)]
 
-    if(len(results) == -1):  # fuzzy search is disabled currently
+
+    print(adv)
+    if(adv=='true'):
+        
         fuzzy_result = process.extract(
             query, data, scorer=fuzz.token_sort_ratio, limit=10)
         fuzzys = [{'id': r[1], 'data': r[0]} for r in fuzzy_result]

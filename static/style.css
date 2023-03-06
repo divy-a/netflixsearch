@@ -37,6 +37,10 @@ body {
   background-color: transparent;
 }
 
+#search-input:disabled {
+  opacity: 0.3;
+}
+
 
 .spinner-border {
   visibility: hidden;
@@ -68,12 +72,30 @@ body {
 
   margin: 2px;
   background-color: #272727;
-  padding: 12px;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 15px;
   border-radius: 2px;
   cursor: pointer;
 
   transition: background-color 0.2s ease;
+}
+
+.adv{
+
+  margin: 2px;
+  margin-top: 10px;
+  margin-left: 430px;
+  background-color: #333;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  width: max-content;
+  transition: background-color 0.2s ease;
+}
+
+.adv:hover{
+  background-color: #555;
 }
 
 .result-item:hover {
