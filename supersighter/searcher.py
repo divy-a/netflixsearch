@@ -42,7 +42,6 @@ def get_results(query, max_results, adv):
         return get_uniques(starts_withs + contains + fuzzys)[0:int(max_results)]
 
     else:
-        print(results)
         return results
 
 def get_uniques(list):
@@ -60,4 +59,4 @@ def get_uniques(list):
 
 
 if __name__ == '__main__':
-    print(get_results('black friday', 10))
+    print()
