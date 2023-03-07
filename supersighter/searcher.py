@@ -1,21 +1,14 @@
-
-import random
-import json
 import csv
 from fuzzywuzzy import fuzz, process
 
 
 data = [] 
 allData = []
-with open('netflixsearch/data/netflix_titles.csv', mode='r', encoding='utf-8') as file:
+with open('netflixsearch/data/pokemon.csv', mode='r', encoding='utf-8') as file:
     csvFile = csv.DictReader(file)
     for lines in csvFile:
-        data.append(lines['title'])
+        data.append(lines['name'])
         allData.append(lines)
-
-
-print('money'.startswith('Money Heist: From Tokyo to Berlin'.lower()))
-
 
 def get_results(query, max_results, adv):
     starts_withs = []
@@ -37,8 +30,6 @@ def get_results(query, max_results, adv):
             
     results = (starts_withs + contains)[0:int(max_results)]
 
-
-    print(adv)
     if(adv=='true'):
         
         fuzzy_result = process.extract(
