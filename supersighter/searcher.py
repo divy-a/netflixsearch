@@ -4,7 +4,7 @@ from fuzzywuzzy import fuzz, process
 
 data = [] 
 allData = []
-with open('netflixsearch/data/pokemon.csv', mode='r', encoding='utf-8') as file:
+with open('data/pokemon.csv', mode='r', encoding='utf-8') as file:
     csvFile = csv.DictReader(file)
     for lines in csvFile:
         data.append(lines['name'])
