@@ -32,13 +32,17 @@ def get_results(query, max_results, adv):
 
     if(adv=='true'):
         
-        fuzzy_result = process.extract(
-            query, data, scorer=fuzz.token_sort_ratio, limit=10)
-        fuzzys = [{'id': r[1], 'data': r[0]} for r in fuzzy_result]
+        fuzzy_result = process.extract(query, data, scorer=fuzz.token_sort_ratio, limit=10)
+        fuzzys = []
+        for r in fuzzy_result:
+            index = data.index(r[0])
+            fuzzys.append({'id': index, 'data': r[0]})
+
 
         return get_uniques(starts_withs + contains + fuzzys)[0:int(max_results)]
 
     else:
+        print(results)
         return results
 
 def get_uniques(list):
